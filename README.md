@@ -1,28 +1,30 @@
-# nodejs-demo-app – CI/CD with GitHub Actions
+# DevOps Task 2: Jenkins CI/CD Pipeline
 
-A sample Node.js (Express) app with an automated pipeline that **tests → builds a Docker image → pushes it to Docker Hub** on every push to `main`.
-Docker Hub image: https://hub.docker.com/r/kosuvaripallipallavi/nodejs-demo-app
-## Pipeline (`.github/workflows/main.yml`)
-1. **test job** – checkout, set up Node 20, `npm ci`, `npm test` (Jest + Supertest).
-2. **build-and-push job** – runs only if tests pass; logs in to Docker Hub, builds the image, pushes `latest` and the commit-SHA tag.
+## Project Overview
+This project demonstrates a basic CI/CD pipeline for a Node.js application using Jenkins and Docker.
 
-## Setup
-Add these in *Repo → Settings → Secrets and variables → Actions*:
-| Secret | Value |
-|---|---|
-| `DOCKERHUB_USERNAME` | your Docker Hub username |
-| `DOCKERHUB_TOKEN` | Docker Hub access token (Read & Write) |
+## Application
+The application is built with Node.js and Express. It provides:
+- `/` — returns a greeting message.
+- `/health` — returns the application health status.
 
-## Run locally
-```bash
-npm install && npm test && npm start        # http://localhost:3000
-docker build -t nodejs-demo-app . && docker run -p 3000:3000 nodejs-demo-app
-```
-### GitHub Actions pipeline
-<img width="1915" height="890" alt="Task1 pipeline success" src="https://github.com/user-attachments/assets/bc93ee92-8345-4490-999c-2bf2080bdaa7" />
-### Docker Hub image
-<img width="1902" height="930" alt="Dockerhub Success" src="https://github.com/user-attachments/assets/38cce863-f67b-47bf-b695-6bdbd885e751" />
+## Pipeline Stages
+1. **Checkout:** Retrieves the source code from GitHub.
+2. **Install Dependencies:** Installs dependencies using `npm ci`.
+3. **Test:** Runs automated tests using `npm test`.
+4. **Build Docker Image:** Builds a Docker image for the application.
+5. **Push to Docker Hub:** Publishes the image to Docker Hub using Jenkins credentials.
+6. **Deploy Container:** Runs the application in a Docker container.
 
+## Tools Used
+- Jenkins
+- Git and GitHub
+- Node.js and npm
+- Docker
+- Docker Hub
 
+## Execution Status
+The Jenkinsfile defines the intended pipeline. Actual execution and deployment must be verified on a configured Jenkins agent with Docker installed and the required credentials configured.
 
-
+## Repository
+https://github.com/Pallavikosuvari/devops-task-2-jenkins-cicd
