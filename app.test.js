@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../app');
+const app = require('./app');
 
 describe('GET endpoints', () => {
   it('GET / returns greeting', async () => {
